@@ -7,7 +7,7 @@ const profileRouter = () => {
 
 	var router = express.Router();
 
-	router.get('/', handle(Users.getMe));
+	router.post('/', handle(Users.getMe));
 
  	router.put('/update-password', handle(Users.update));
 

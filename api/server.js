@@ -1,22 +1,27 @@
 import express from "express";
 import bodyParser from "body-parser";
 
-import usersRouter from "../api/router/users.router";
-import profileRouter from "../api/router/profile.router";
-import customRouter from "../api/router/custom.router";
+import usersRouter from "./router/users.router";
+import profileRouter from "./router/profile.router";
+import customRouter from "./router/custom.router";
+import checkToken  from './auth/middleware';
+
 
 export default () => {
+
 	const app = express();
 
 	app.use(bodyParser.json());
 
-// TO DO
- 	app.use('/', customRouter());
+	app.use('/', checkToken);
 
-// //TO CHECK
+// TO TEST
+	app.use('/', customRouter());
+
+// //TO TEST
  	app.use('/user', usersRouter());
 
-// //TO CHECK
+// //TO TEST
  	app.use('/me', profileRouter());
 
 

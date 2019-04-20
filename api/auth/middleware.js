@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import config from '../../env.config';
+import { SECRET } from '../../env.config';
 
 
 
@@ -25,16 +25,18 @@ let checkToken = (req, res, next) => {
   }
 
   if (token) {
-    jwt.verify(token, config.secret, (err, decoded) => {
-      if (err) {
+    jwt.verify(token, SECRET, (err, decoded) => {
+      if(!err){
+        req.token = decoded;
+
+        return next();
+        
+
+      } 
         return res.status(200).send({
           success: false,
           message: 'Token is not valid'
         });
-      } else {
-        req.decoded = decoded;
-        next();
-      }
     });
   } else {
     return res.status(200).send({

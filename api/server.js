@@ -1,9 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 
-import usersRouter from "./router/users.router";
-import profileRouter from "./router/profile.router";
-import customRouter from "./router/custom.router";
+import authRouter from "./router/auth.router";
+import noAuthRouter from "./router/noAuth.router";
 import checkToken  from './auth/middleware';
 
 
@@ -15,14 +14,11 @@ export default () => {
 
 	app.use('/', checkToken);
 
-// TO TEST
-	app.use('/', customRouter());
+	app.use('/', noAuthRouter());
 
-// //TO TEST
- 	app.use('/user', usersRouter());
+ 	app.use('/', authRouter());
 
-// //TO TEST
- 	app.use('/me', profileRouter());
+ 	
 
 
 	return app;

@@ -7,15 +7,15 @@ import mongoose from 'mongoose';
 
 //method: GET
 
-// auth required: Yes
+// auth required: no
 
-// receives body with userId 
+// receives params with userId 
 // search for existing userId
 // return user data
 
 
 
-export const getOne = async (params) => {
+export const getOne = async (params, token) => {
 
 	const Users = mongoose.model('users');
 
@@ -35,20 +35,20 @@ export const getOne = async (params) => {
 
 // route -> /me
 
-//method: POST
+//method: GET
 
 // auth required: Yes
 
-// receives body with userId 
+// receives token with userId 
 // search for existing userId
 // return user data
 
 
-export const getMe = async (body) => {
+export const getMe = async (params, token) => {
 	const Users = mongoose.model('users');
 
 	try {
-		let data = await Users.findOne({ _id: body.userId }, );
+		let data = await Users.findOne({ _id: token.userId });
 
 		if(!data) return {status : 200, data: {message: 'user not found' }};
 

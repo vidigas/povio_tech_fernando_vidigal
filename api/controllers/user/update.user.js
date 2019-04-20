@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-import { hashPassword } from './helper';
+import { hashPassword } from '../utils';
 
 
 
@@ -13,20 +13,20 @@ import { hashPassword } from './helper';
 
 // auth required: yes
 
-// receives body with userId and password 
+// receives token with userId and body with password 
 // search for existing userId 
 // hash new password update user on db
 // return userId
 
 
 
-export const update = async (params, body) => {
+export const update = async (params, body, token) => {
 	const Users = mongoose.model('users');
 
 	try {
 
 		let hashedPassword = await hashPassword(body.password);
-		let data = await Users.findOneAndUpdate({ _id: body.userId }, {$set: { password: hashedPassword }} ,{ new: true });
+		let data = await Users.findOneAndUpdate({ _id: token.userId }, {$set: { password: hashedPassword }} ,{ new: true });
 		if(!data) return { status: 200, data: {message: 'userNot found'}}
 		return { status: 200, data: { message: 'update password sucessfull', userId: data._id}};
 	} catch(e) {

@@ -2,7 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { handle } from './handler';
 
-const customRouter = () => {
+
+//routes of the application that do not require authentication
+
+
+const noAuthRouter = () => {
 	const Users = mongoose.model('users');
 
 	var router = express.Router();
@@ -13,7 +17,9 @@ const customRouter = () => {
 
 	router.get('/most-liked', handle(Users.getAll));
 
+	router.get('/user/:id', handle(Users.getOne));
+
 	return router;
 }
 
-export default customRouter;
+export default noAuthRouter;

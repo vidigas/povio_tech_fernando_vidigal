@@ -1,6 +1,10 @@
 import bcrypt from 'bcrypt';
 
-import { findByUsername } from './helper';
+import jwt from 'jsonwebtoken';
+import { SECRET } from '../../../env.config';
+
+
+import { findByUsername } from '../utils';
 
 //login func
 
@@ -13,12 +17,13 @@ import { findByUsername } from './helper';
 // receives body with username and password 
 // search for existing username 
 // compare password with hash stored
-// return logged in userId
+//generates token
+// return logged in userId and token
 
 
 
 export const login = async (body) => {
-
+console.log('SECRET ---->',SECRET)
 	try {
 		let userExists = await findByUsername(body.username);
 
@@ -26,8 +31,13 @@ export const login = async (body) => {
 
 		const match = await bcrypt.compare(body.password, userExists.password);
  
-    if(match) return { status: 200, data: { message : "sucessfull login", userId: userExists._id }};
-    return  { status: 200, data: { message : "wrong password" }};
+    if(match){
+
+    	let token = jwt.sign({username: body.username, userId: userExists._id}, SECRET, { expiresIn: '1h'});
+
+    	return { status: 200, data: { message : "sucessfull login", userId: userExists._id, token }};
+
+    } else return  { status: 200, data: { message : "wrong password" }};
 	} catch(e){
 		return { status: 500, data: e }
 	}

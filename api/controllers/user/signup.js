@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 
-import { findByUsername , hashPassword } from './helper';
+import { findByUsername , hashPassword } from '../utils';
 
 //signup func
 

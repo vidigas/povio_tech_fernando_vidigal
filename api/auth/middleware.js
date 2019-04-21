@@ -7,7 +7,8 @@ import { SECRET } from '../../env.config';
 let checkToken = (req, res, next) => {
 
   switch(req.url.split('/')[1]){
-
+    case '':
+    case 'build':
     case 'signup':
     case 'login':
     case 'most-liked': 

@@ -14,7 +14,9 @@ const buttonStyle = {
       borderRadius: '10px',
       minWidth: '30px',
       position: 'relative',
-      top: '40px'
+      top: '10px',
+      height:'35px',
+      margin: '15px'
   }
 };
 

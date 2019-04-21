@@ -3,7 +3,7 @@ import injectSheet from 'react-jss';
 
 import Button from '../../ui/atoms/Button';
 import TextInput from '../../ui/atoms/TextInput';
-import Card from '../../ui/molecules/Card';
+import Card from '../../ui/components/Card';
 
 
 class List extends Component {
@@ -25,13 +25,29 @@ class List extends Component {
 
 
 	render() {
-		return(
-			<div>
+
+
+    const { classes } = this.props;
+
+		return([
+			<h1>List of Users</h1>,
+			<div >
 				<Card id={'ide'} username={'Fernando'} likes={4} onClick={() => console.log('oi')}/>
 				<Card id={'ide'} username={'Pedro'} likes={4} onClick={() => console.log('oi')}/>
 				<Card id={'ide'} username={'Marcelo'} likes={4} onClick={() => console.log('oi')}/>
-
-			</div>
+				<Card id={'ide'} username={'Fernando'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Pedro'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Marcelo'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Fernando'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Pedro'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Marcelo'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Fernando'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Pedro'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Marcelo'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Fernando'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Pedro'} likes={4} onClick={() => console.log('oi')}/>
+				<Card id={'ide'} username={'Marcelo'} likes={4} onClick={() => console.log('oi')}/>												
+			</div>]
 		);
 	}
 }

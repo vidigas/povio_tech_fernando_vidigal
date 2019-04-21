@@ -10,10 +10,9 @@ const Card = ({ classes, username, id, likes, onClick }) => {
     <div className={classes.container}>
       <div className={classes.user}>
         <span className={classes.username}> {username} </span> <br/>
-        <span className={classes.span}> {likes} likes </span> <br/>
-        <span className={classes.span}> offline </span>
       </div>
        <div className={classes.like}>
+        <span className={classes.span}> {likes} likes </span> <br/>
       <Button label={'like'} onClick={()=> console.log('aqui vai da like')} />
       </div>
 

@@ -1,0 +1,11 @@
+{
+  "users": [
+    { "username": "Jhonn", "password": "123", "likes": 4 },
+    { "username": "Peter", "password": "123", "likes": 3 },
+    { "username": "Mark", "password": "123", "likes": 5 },
+    { "username": "Bill", "password": "123", "likes": 2 },
+    { "username": "Chris", "password": "123", "likes": 2 },
+    { "username": "Paul", "password": "123", "likes": 1 },
+    { "username": "Michael", "password": "123", "likes": 6 }
+  ]
+}

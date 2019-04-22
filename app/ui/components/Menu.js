@@ -4,26 +4,29 @@ import propTypes from 'prop-types';
 
 import Button from '../atoms/Button';
 
+const renderMenuButtons = (menuButtons, buttonAction) => {
+  return menuButtons.map( button => {
+    return <Button label={button} key={button} onClick={ () => buttonAction(button) } />;
+  });
+};
 
-const Header = ({ classes }) => {
+
+
+const Header = ({ classes, menuButtons, buttonAction }, ) => {
   return (
     <div className={classes.container}>
 
-      <Button label={'login'} onClick={()=> console.log('aqui vai da like')} />
-      <Button label={'signup'} onClick={()=> console.log('aqui vai da like')} />
-      <Button label={'logout'} onClick={()=> console.log('aqui vai da like')} />
-
+      {renderMenuButtons(menuButtons, buttonAction)}
     </div>
   )
 }
 
 const style = {
   container: {
-    'position':'fixed',
-    'right': '25%',
-    'height': '55px',
+    'height': '85px',
     'paddingLeft': '20px',
-    'width': '250px',
+    'width': '500px',
+    backgroundColor: '#eaf2ff'
   },
 
 }

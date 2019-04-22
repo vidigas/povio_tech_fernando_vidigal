@@ -7,6 +7,7 @@
     "start": "babel-node index.js",
     "dev": "nodemon index.js --exec babel-node",
     "build": "webpack",
+    "populate": "babel-node scripts/populate.js",
     "test": "jest --watchAll"
   },
   "author": "vidigas",
@@ -21,13 +22,17 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.2",
+    "acorn": "^6.1.1",
     "bcrypt": "^3.0.6",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "lodash.find": "^4.6.0",
     "mongoose": "^5.4.20",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react-redux": "^7.0.2",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.0.0",

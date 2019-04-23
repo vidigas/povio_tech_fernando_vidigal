@@ -29,6 +29,10 @@ export const likeRequest = (userId, token) => {
 	return axios.put(`/user/${userId}/like`, {}, { headers : { Authorization : token }});
 }
 
+export const unlikeRequest = ( userId, token) => {
+	return axios.put(`/user/${userId}/unlike`, {}, { headers : { Authorization: token }});
+}
+
 
 export const updateRequest = (password, token) => {
 	

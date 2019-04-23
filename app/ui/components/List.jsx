@@ -3,7 +3,7 @@ import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 
 
-import { fetchUsers, likeAction, fetchUser } from '../../actions';
+import { fetchUsers, likeAction, unlikeAction, fetchUser } from '../../actions';
 
 
 import Button from '../../ui/atoms/Button';
@@ -37,8 +37,9 @@ class List extends Component {
 	}
 
 	handleClick(user, isLiked){
+		console.log(isLiked, 'vai dar like');
 		if(isLiked){
-			return this.props.likeAction(user, this.props.userInfo.token);
+			return this.props.unlikeAction(user, this.props.userInfo.token);
 		}
 		else return this.props.likeAction(user, this.props.userInfo.token);
 	}
@@ -103,4 +104,4 @@ const style = {
 	}
 };
 
-export default injectSheet(style)(connect(mapStateToProps, {fetchUsers, likeAction, fetchUser})(List))
+export default injectSheet(style)(connect(mapStateToProps, {fetchUsers, likeAction, unlikeAction, fetchUser})(List))

@@ -1,4 +1,4 @@
-import { getUsers, getMe, loginRequest, signupRequest, likeRequest } from '../repositories/repository';
+import { getUsers, getMe, loginRequest, signupRequest, likeRequest, unlikeRequest } from '../repositories/repository';
 
 
 export const fetchUsers =  () => async dispatch => {
@@ -36,6 +36,18 @@ export const likeAction = (userId, token) => async dispatch => {
 	let response = await likeRequest(userId, token);
 	console.log('like response', response);
 
-	dispatch({ type: 'LIKE_USER', payload: userId })
+	dispatch({ type: 'LIKE_USER', payload: response.data });
 
 }
+
+export const unlikeAction = (userId, token) => async dispatch => {
+	let response = await unlikeRequest(userId, token);
+
+	dispatch({ type: 'UNLIKE_USER', payload: response.data });
+}
+
+	export const logout = () => {
+		return {
+			type: 'LOGOUT_USER'
+		}
+	}

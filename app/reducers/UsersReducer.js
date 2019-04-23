@@ -21,10 +21,13 @@ export default ( state = INITIAL_STATE, action ) => {
 			return { ...state, loginInfo: action.payload};
 		case 'SIGNUP_USER': 
 			return { ...state, signupInfo: action.payload};
-		case 'LIKE_USER':{
-			
-			return { ...state, newLikes: action.payload }
-		}
+		case 'LIKE_USER': 
+			return { ...state, newLikes: action.payload, newUnlikes: null };
+		case 'UNLIKE_USER':
+			return { ...state, newUnlikes: action.payload, newLikes: null };
+		case 'LOGOUT_USER':
+			return { ...state, userInfo: INITIAL_STATE.userInfo};
+		
 		default: return state;
 	};
 

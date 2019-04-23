@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 
 
-import { openModal, fetchUser } from '../../actions';
+import { openModal, fetchUser, logout } from '../../actions';
 
 import Signup from '../Auth/Signup';
 import Login from '../Auth/Login';
@@ -28,6 +28,12 @@ class Home extends Component {
 
 	}
 
+	handleLogout() {
+
+		localStorage.removeItem('token');
+		this.props.logout()
+	}
+
 	render() {
 		const { classes } = this.props;
 
@@ -40,6 +46,7 @@ class Home extends Component {
 					loggedButtons={['update', 'logout']}
 					notLoggedButtons ={['login', 'signup']}
 					buttonAction={this.props.openModal}
+					logoutAction={() => this.handleLogout()}
 					userInfo={this.props.userInfo}/>
 				
 				<List />
@@ -67,5 +74,5 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { openModal, fetchUser })(Home)
+export default connect(mapStateToProps, { openModal, fetchUser, logout })(Home)
 

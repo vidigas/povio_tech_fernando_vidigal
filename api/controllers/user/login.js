@@ -23,7 +23,6 @@ import { findByUsername } from '../utils';
 
 
 export const login = async (body) => {
-console.log('SECRET ---->',SECRET)
 	try {
 		let userExists = await findByUsername(body.username);
 

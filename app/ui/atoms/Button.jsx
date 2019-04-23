@@ -17,12 +17,15 @@ const buttonStyle = {
       top: '10px',
       height:'35px',
       margin: '15px'
+  },
+  dislike: {
+      backgroundColor: 'red'
   }
 };
 
-const Button = ({ label, onClick, className, classes, type }) => {
+const Button = ({ label, onClick, className, classes, type, key }) => {
   return (
-    <button onClick={onClick} className={`${classes.button} ${className}`} type={type}>
+    <button onClick={onClick} className={`${classes.button} ${className}`} type={type} key={key}>
       {label}
     </button>
   );

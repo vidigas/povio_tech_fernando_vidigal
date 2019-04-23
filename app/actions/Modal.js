@@ -12,8 +12,6 @@
 	};
 
 	export const openModal = (selected) => {
-		console.log('eaeee', selected);
-
 		switch(selected){
 			case'login': return openLoginModal();
 			case 'signup': return openSignupModal();
@@ -38,7 +36,6 @@
 
 	export const closeModal = (selected) => {
 
-		console.log('eaeee', selected);
 		switch(selected){
 			case 'login': return closeLoginModal();
 			case 'signup': return closeSignupModal();

@@ -1,29 +1,98 @@
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
+import { connect } from 'react-redux';
+
+
+import { fetchUsers, likeAction, fetchUser } from '../../actions';
+
 
 import Button from '../../ui/atoms/Button';
 import TextInput from '../../ui/atoms/TextInput';
 import Card from '../../ui/components/Card';
 
 
-const renderCards = users => {
-	return users.map( user => {
-		console.log(user)
-		return <Card key={user._id} username={user.username} likes={user.likes} onClick={() => console.log('oi')}/>
+class List extends Component {
+	
+	constructor(props) {
+		super(props);
+	}	
 
-	})
-}
+	componentDidMount(){
+		this.props.fetchUsers();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		console.log('ta batendo no willReceiveProps', nextProps.newlikes);
+
+		if(nextProps.newLikes && nextProps.newlikes !== this.props.newLikes){
+
+			this.handleLikeResponse(nextProps.userInfo);
+		}
+	}
+
+	handleLikeResponse(data){
+		console.log('ta batendo no handle')
+		this.props.fetchUsers();
+		this.props.fetchUser(data.token);
+
+		console.log('data -->', data.token);
+		//
+	}
+
+	handleClick(user, isLiked){
+		if(isLiked){
+			return this.props.likeAction(user, this.props.userInfo.token);
+		}
+		else return this.props.likeAction(user, this.props.userInfo.token);
+	}
+
+	renderCard(user){
+		let isLiked = ( this.props.userInfo.username && this.props.userInfo.liked[0][user._id]) ? true : false
+		let isLoggedIn = this.props.userInfo.username ? true : false
+
+		return	(
+			<Card 
+				isLoggedIn={isLoggedIn}
+				key={user._id}
+				id={user._id}
+				username={user.username}
+				likes={user.likes}
+				isLiked={isLiked}
+				clickAction={() => this.handleClick(user._id, isLiked)}/>
+			)
+	}
+
+	renderCards  () {
+		return this.props.allUsers.map( user => {
+
+			return this.renderCard(user)
+		})
+	}
 
 
-const List = ({ classes, users }) =>  {
+
+	render (){
+		console.log('render do list', this.props.newLikes);
+		const { classes } = this.props;
 		return([
 			<h1 className={classes.title}>List of Users</h1>,
+		
 			<div className={classes.list} >
-			{renderCards(users)}
-			</div>]
-		);
+		
+			{this.renderCards()}
+		
+			</div>]);
+	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		allUsers: state.users.allUsers,
+		userInfo: state.users.userInfo,
+		newlikes: state.users.newlikes
+	}
+	
+};
 
 const style = {
 	list: {
@@ -38,4 +107,4 @@ const style = {
 	}
 };
 
-export default injectSheet(style)(List);
+export default injectSheet(style)(connect(mapStateToProps, {fetchUsers, likeAction, fetchUser})(List))

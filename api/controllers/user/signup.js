@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+import jwt from 'jsonwebtoken';
+import { SECRET } from '../../../env.config';
 
 import { findByUsername , hashPassword } from '../utils';
 
@@ -37,7 +39,10 @@ export const signup = async (body) => {
 
 		let data = await newUser.save();
 
-		return { status: 200, data: { userId: newUser._id, message:'sucessfull signup'} };
+		let token = jwt.sign({username: body.username, userId: newUser._id}, SECRET, { expiresIn: '1h'});
+
+
+		return { status: 200, data: { userId: newUser._id, message:'sucessfull signup', token } };
 	} catch(e) {
 		return { status:500, data: e };
 	}

@@ -2,13 +2,13 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import propTypes from 'prop-types';
 
-const TextInput = ({ classes, label, value, id, onChange, onClick, onBlur }) => {
+const TextInput = ({ classes, label, value, id, onChange, onClick, onBlur, key , type}) => {
   return (
     <div className={"input-field"}>
       
       <label for="password">{label}</label>
 
-      <input type='text' id={id} value={value} onChange={onChange} onBlur={onBlur} className={classes.input}/>
+      <input type={type} key={key} id={id}  value={value} onChange={onChange} onBlur={onBlur} className={classes.input}/>
 
     </div>
   )

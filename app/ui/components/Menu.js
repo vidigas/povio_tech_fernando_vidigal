@@ -12,7 +12,9 @@ const renderMenuButtons = (menuButtons, buttonAction) => {
 
 
 
-const Header = ({ classes, menuButtons, buttonAction }, ) => {
+const Menu = ({ classes, loggedButtons, notLoggedButtons, buttonAction, userInfo }, ) => {
+  let menuButtons = userInfo.username ? loggedButtons : notLoggedButtons;
+
   return (
     <div className={classes.container}>
 
@@ -38,4 +40,4 @@ const style = {
 // 	onClick: propTypes.func.isRequired,
 // };
 
-export default injectSheet(style)(Header);
+export default injectSheet(style)(Menu);

@@ -30,12 +30,18 @@ const style = {
   }
 };
 
-const Modal = ({ classes, context, closeModal }) => {
+const Modal = ({ classes, context, closeModal, onUserChange, onPasswordChange, onPrimaryButtonClick, onSecundaryButtonClick }) => {
   return (
   	<div className={classes.container}>
   		<div className={classes.backgroundDiv} onClick={closeModal} />
   		<div className={classes.formWrapper}>
-  			<Form context={context} />
+  			<Form 
+          context={context}
+          onUserChange={onUserChange}
+          onPasswordChange={onPasswordChange}
+          onPrimaryButtonClick={onPrimaryButtonClick}
+          onSecundaryButtonClick={onSecundaryButtonClick}
+          />
   		</div>
   	</div>
   );

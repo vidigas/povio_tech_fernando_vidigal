@@ -6,29 +6,41 @@ import Button from '../../atoms/Button';
 import TextInput from '../../atoms/TextInput';
 import FormSchema from './FormSchema';
 
-const renderFields = (fieldsObj) => {
+const renderFields = (fieldsObj, onPasswordChange, onUserChange) => {
 	return Object.keys(fieldsObj).map( fieldName => {
-		return <TextInput label={fieldName} />;
+		const onChange = fieldName === 'username' ? onUserChange : onPasswordChange; 
+		return <TextInput type={fieldName === 'password' ? 'password' : 'text'} label={fieldName} onChange={onChange} key={fieldName}/>;
 	});
 }
 
-const renderButtons = (buttonsObj) => {
+const selectHandler = (handlers, title) => {
+	switch(title){
+		case 'login': {
+			return 
+		}
+		default: return
+	}
+}
+
+const renderButtons = (buttonsObj, onPrimaryButtonClick, onSecundaryButtonClick) => {
 	return Object.keys(buttonsObj).map( buttonName => {
-		return <Button label={buttonName} />;
+
+		const onClick = buttonName === 'button_send' ? onPrimaryButtonClick : onSecundaryButtonClick;
+		return <Button label={buttonsObj[buttonName].title} onClick={onClick} key={buttonsObj[buttonName].title} />;
 	});
 
 }
 
 
-const FormBuilder = ({ classes, context, FieldsHandler, ButtonsHandler }) => {
+const FormBuilder = ({ classes, context, onUserChange, onPasswordChange, onPrimaryButtonClick, onSecundaryButtonClick }) => {
 	
 	var form_schema = FormSchema(context)
 	let fieldsObj = form_schema.fields;
 	let buttonsObj = form_schema.buttons;
 	return (
 		[ <h1> { form_schema.title } </h1>,
-		renderFields(fieldsObj, FieldsHandler),
-		renderButtons(buttonsObj, ButtonsHandler)
+		renderFields(fieldsObj, onPasswordChange, onUserChange),
+		renderButtons(buttonsObj, onPrimaryButtonClick, onSecundaryButtonClick)
 		])
 }
 

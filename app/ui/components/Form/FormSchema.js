@@ -15,7 +15,7 @@ const login_form_schema = {
 			title: 'login'
 		},
 		button_link: {
-			title: 'notRegistered'
+			title: 'go to Signup'
 		}
 	}
 }
@@ -37,7 +37,7 @@ const signup_form_schema = {
 			title: 'register'
 		},
 		button_link: {
-			title: 'login'
+			title: 'go to login'
 		}
 	}
 }
@@ -48,10 +48,6 @@ const update_form_schema = {
 		username : {
 			placeholder: 'username',
 			type: 'text'
-		},
-		oldPassword: {
-			placeholder: 'old password',
-			type: 'password'
 		},
 		newPassword: {
 			placeholder: 'new password',

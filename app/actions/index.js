@@ -1,10 +1,20 @@
 
-	import { openModal, closeModal}  from './Modal';
+	import { openModal, closeModal, goToSignup}  from './Modal';
 
-	import { fetchUsers } from './API';
+	import { fetchUsers, fetchUser, loginClick, signupClick, likeAction } from './API';
 
+	import { onUserChange, onPasswordChange } from './Form';
 
-	export { openModal, closeModal, fetchUsers };
+	export {
+		openModal,
+	 	closeModal,
+	 	fetchUsers,
+	 	fetchUser,
+	 	loginClick,
+	 	signupClick,
+	 	likeAction,
+	 	onUserChange,
+	 	onPasswordChange };
 
 
 

@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 
 
-import { openModal, fetchUsers } from '../../actions';
+import { openModal } from '../../actions';
 
 import Signup from '../Auth/Signup';
 import Login from '../Auth/Login';
@@ -13,20 +13,11 @@ import List from '../../ui/components/List';
 import Menu from '../../ui/components/Menu';
 import Form from '../../ui/components/Form';
 import Modal from '../../ui/components/Modal';
+import Status from '../../ui/components/Status';
 
 class Home extends Component {
 	constructor(props){
 		super(props);
-
-		this.state = {
-			loading: true,
-			inputValue: ''
-		}
-	}
-
-	componentDidMount(){
-		this.props.fetchUsers();
-
 	}
 
 	render() {
@@ -35,11 +26,15 @@ class Home extends Component {
 		return(
 			<div>
 
+				<Status userInfo={this.props.userInfo} />
+
 				<Menu 
-					menuButtons={['login', 'signup', 'update', 'logout']} 
-					buttonAction={this.props.openModal}/>
+					loggedButtons={['update', 'logout']}
+					notLoggedButtons ={['login', 'signup']}
+					buttonAction={this.props.openModal}
+					userInfo={this.props.userInfo}/>
 				
-				<List users={this.props.allUsers} clickAction={'yuyu'} />
+				<List />
 				
 				<Login />
 				
@@ -58,11 +53,11 @@ class Home extends Component {
 const mapStateToProps = (state) => {
 	return {
 		show: state.login.show,
-		allUsers: state.users.allUsers
+		userInfo: state.users.userInfo
 	}
 	
 };
 
 
-export default injectSheet(null)(connect(mapStateToProps, { openModal, fetchUsers })(Home))
+export default connect(mapStateToProps, { openModal })(Home)
 

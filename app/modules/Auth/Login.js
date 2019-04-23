@@ -19,7 +19,7 @@ class Login extends Component {
 	}
 
 	handleLoginResponse(data){
-
+		localStorage.setItem('token', data.token);
 		this.props.fetchUser(data.token);
 		this.props.closeModal('login');
 		return alert(data.message)

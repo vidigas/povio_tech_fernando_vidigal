@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 
 
-import { openModal } from '../../actions';
+import { openModal, fetchUser } from '../../actions';
 
 import Signup from '../Auth/Signup';
 import Login from '../Auth/Login';
@@ -18,6 +18,14 @@ import Status from '../../ui/components/Status';
 class Home extends Component {
 	constructor(props){
 		super(props);
+	}
+
+	componentWillMount(){
+
+		let token = localStorage.getItem('token', token);
+		console.log('componentdidMount', token);
+		if(token)  this.props.fetchUser(token);
+
 	}
 
 	render() {
@@ -59,5 +67,5 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { openModal })(Home)
+export default connect(mapStateToProps, { openModal, fetchUser })(Home)
 

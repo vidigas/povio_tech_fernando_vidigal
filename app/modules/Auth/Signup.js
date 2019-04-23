@@ -19,6 +19,7 @@ class Signup extends Component {
 	}
 
 	handleSignupResponse(data){
+		localStorage.setItem('token', data.token);
 		this.props.fetchUser(data.token);
 		this.props.closeModal('signup');
 		return alert(data.message);

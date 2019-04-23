@@ -34,9 +34,6 @@ class List extends Component {
 		console.log('ta batendo no handle')
 		this.props.fetchUsers();
 		this.props.fetchUser(data.token);
-
-		console.log('data -->', data.token);
-		//
 	}
 
 	handleClick(user, isLiked){
@@ -72,7 +69,6 @@ class List extends Component {
 
 
 	render (){
-		console.log('render do list', this.props.newLikes);
 		const { classes } = this.props;
 		return([
 			<h1 className={classes.title}>List of Users</h1>,
@@ -96,7 +92,7 @@ const mapStateToProps = (state) => {
 
 const style = {
 	list: {
-		height: '650px',
+		height: '80vh',
 		width: '450px',
 		padding: '20px',
 		margin: '10px',

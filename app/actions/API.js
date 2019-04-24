@@ -1,12 +1,7 @@
-import { getUsers, getMe, loginRequest, signupRequest, likeRequest, unlikeRequest } from '../repositories/repository';
+import { loginRequest, signupRequest, likeRequest, unlikeRequest } from '../repositories/repository';
 
 
-export const fetchUsers =  () => async dispatch => {
 
-	let response = await getUsers();
-			
-	dispatch({ type: 'FETCH_USERS', payload: response.data });
-}
 	
 export const loginClick = (username, password) => async dispatch => {
 	
@@ -22,19 +17,13 @@ export const signupClick = (username, password) => async dispatch => {
 	dispatch({ type: 'SIGNUP_USER', payload: response.data });
 }
 
-export const fetchUser = (token) => async dispatch => {
-	let response = await getMe(token);
-
-	response.data.token = token
-
-	dispatch({ type: 'FETCH_USER', payload: response.data });
-}
 
 
 export const likeAction = (userId, token) => async dispatch => {
 	
 	let response = await likeRequest(userId, token);
-	console.log('like response', response);
+
+	response.data.userId = userId;
 
 	dispatch({ type: 'LIKE_USER', payload: response.data });
 
@@ -42,6 +31,8 @@ export const likeAction = (userId, token) => async dispatch => {
 
 export const unlikeAction = (userId, token) => async dispatch => {
 	let response = await unlikeRequest(userId, token);
+	
+	response.data.userId = userId;
 
 	dispatch({ type: 'UNLIKE_USER', payload: response.data });
 }

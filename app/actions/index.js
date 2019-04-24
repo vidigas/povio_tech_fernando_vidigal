@@ -1,7 +1,9 @@
 
 	import { openModal, closeModal, goToSignup}  from './Modal';
 
-	import { fetchUsers, fetchUser, loginClick, signupClick, likeAction, unlikeAction, logout } from './API';
+	import { loginClick, signupClick, likeAction, unlikeAction, logout } from './API';
+
+	import { fetchUsers, fetchUser } from './User'
 
 	import { onUserChange, onPasswordChange } from './Form';
 

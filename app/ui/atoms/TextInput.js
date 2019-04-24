@@ -6,7 +6,7 @@ const TextInput = ({ classes, label, value, id, onChange, onClick, onBlur, key ,
   return (
     <div className={"input-field"}>
       
-      <label for="password">{label}</label>
+      <label key="password">{label}</label>
 
       <input type={type} key={key} id={id}  value={value} onChange={onChange} onBlur={onBlur} className={classes.input}/>
 

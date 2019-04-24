@@ -15,33 +15,39 @@ class List extends Component {
 	
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			newLikes: null,
+			newUnlikes: null
+		};
 	}	
 
-	componentDidMount(){
-		this.props.fetchUsers();
+	async componentDidMount(){
+		await this.props.fetchUsers();
 	}
 
-	componentWillReceiveProps(nextProps) {
-		console.log('ta batendo no willReceiveProps', nextProps.newlikes);
-
-		if(nextProps.newLikes && nextProps.newlikes !== this.props.newLikes){
-
-			this.handleLikeResponse(nextProps.userInfo);
-		}
+  didUpdate (next, prev) {
+		if(!next) return false;
+		else if (next !== prev) return true;
+	}
+	
+	async componentWillReceiveProps(nextProps) {
+		
+		let hasNewLike = this.didUpdate(nextProps.newLikes, this.props.newLikes);
+		let hasNewUnlike = this.didUpdate(nextProps.newUnlikes, this.props.newUnlikes);
+		if(hasNewLike || hasNewUnlike) return await this.handleLikeResponse(nextProps.userInfo);
 	}
 
-	handleLikeResponse(data){
-		console.log('ta batendo no handle')
-		this.props.fetchUsers();
-		this.props.fetchUser(data.token);
+	async handleLikeResponse(data){
+
+		await this.props.fetchUsers();
+		await this.props.fetchUser(data.token);
+
 	}
 
-	handleClick(user, isLiked){
-		console.log(isLiked, 'vai dar like');
-		if(isLiked){
-			return this.props.unlikeAction(user, this.props.userInfo.token);
-		}
-		else return this.props.likeAction(user, this.props.userInfo.token);
+	async handleClick(user, isLiked){
+		if(isLiked) return await this.props.unlikeAction(user, this.props.userInfo.token);
+		else return await this.props.likeAction(user, this.props.userInfo.token);
 	}
 
 	renderCard(user){
@@ -56,18 +62,17 @@ class List extends Component {
 				username={user.username}
 				likes={user.likes}
 				isLiked={isLiked}
-				clickAction={() => this.handleClick(user._id, isLiked)}/>
+				clickAction={async () => await this.handleClick(user._id, isLiked)}/>
 			)
 	}
 
 	renderCards  () {
+		if(!this.props.allUsers.length) return <h4> No users registered.</h4>
 		return this.props.allUsers.map( user => {
 
 			return this.renderCard(user)
 		})
 	}
-
-
 
 	render (){
 		const { classes } = this.props;
@@ -86,7 +91,8 @@ const mapStateToProps = (state) => {
 	return {
 		allUsers: state.users.allUsers,
 		userInfo: state.users.userInfo,
-		newlikes: state.users.newlikes
+		newLikes: state.users.newLikes,
+		newUnlikes: state.users.newUnlikes
 	}
 	
 };

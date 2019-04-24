@@ -3,6 +3,7 @@ const INITIAL_STATE = {
 	loginInfo: null,
 	signupInfo: null,
 	newLikes: null,
+	newUnlikes: null,
 	userInfo: {
 		token: null,
 		username: null,

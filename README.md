@@ -2,7 +2,10 @@
 
 this project was developed for the povio labs Full Stack assignement.
 
-you will node.js and mongodb setup to run this program.
+you will node.js and mongodb  setup to run this program.
+
+![Alt text](/public/screenshot.png?raw=true "logged in view")
+![Alt text](/public/screenshotNotLogged.png?raw=true "notLogged  view")
 
 
 
@@ -45,6 +48,7 @@ npm run dev
 ```
 
 Access `localhost:8080` in your browser to start using the application.
+
 
 # Tests
 Run tests:

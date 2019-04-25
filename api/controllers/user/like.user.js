@@ -33,7 +33,7 @@ export const like = async (params, body, token) => {
 
 			let data = await Users.findOneAndUpdate({ _id: token.userId }, {$set: { liked: liker.liked }} ,{ new: true });
 			
-			return { status: 200, data: { message: 'sucessfull like'}}
+			return { status: 200, data: { message: 'successful like'}}
 		} 
 	} catch(e) {
 			return { status: 500, data: e}
@@ -73,7 +73,7 @@ export const unlike = async (params, body, token) => {
 
 			let data = await Users.findOneAndUpdate({ _id: token.userId }, {$set: { liked: unliker.liked }} ,{ new: true });
 			
-			return { status : 200, data: { message: 'sucessfull unlike'} }
+			return { status : 200, data: { message: 'successful unlike'} }
 		} 
 	} catch(e) {
 			return { status: 500, data: e}

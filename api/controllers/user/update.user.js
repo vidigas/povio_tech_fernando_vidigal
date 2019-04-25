@@ -28,7 +28,7 @@ export const update = async (params, body, token) => {
 		let hashedPassword = await hashPassword(body.password);
 		let data = await Users.findOneAndUpdate({ _id: token.userId }, {$set: { password: hashedPassword }} ,{ new: true });
 		if(!data) return { status: 200, data: {message: 'userNot found'}}
-		return { status: 200, data: { message: 'update password sucessfull', userId: data._id}};
+		return { status: 200, data: { message: 'update password succesful', userId: data._id}};
 	} catch(e) {
 		return { status:500, data:e};
 	}

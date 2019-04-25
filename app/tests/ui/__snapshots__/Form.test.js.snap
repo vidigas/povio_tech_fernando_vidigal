@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <h1>
+     
+    LOGIN
+     
+  </h1>,
+  <div
+    className="input-field"
+  >
+    <label>
+      username
+    </label>
+    <input
+      className="TextInput-input-0-1-2"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>,
+  <div
+    className="input-field"
+  >
+    <label>
+      password
+    </label>
+    <input
+      className="TextInput-input-0-1-2"
+      onChange={[Function]}
+      type="password"
+    />
+  </div>,
+  <button
+    className="Button-button-0-1-3 Button-button-0-1-5 "
+    onClick={[Function]}
+    type="button"
+  >
+    login
+  </button>,
+  <button
+    className="Button-button-0-1-3 Button-button-0-1-6 "
+    onClick={[Function]}
+    type="button"
+  >
+    go to Signup
+  </button>,
+]
+`;

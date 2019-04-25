@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Card-container-0-1-1 Card-container-0-1-5"
+>
+  <div
+    className="Card-user-0-1-2"
+  >
+    <span
+      className="Card-username-0-1-3"
+    >
+       
+      username
+       
+    </span>
+     
+    <br />
+  </div>
+  <div>
+    <span
+      className="Card-span-0-1-4"
+    >
+       
+      4
+       likes 
+    </span>
+     
+    <br />
+  </div>
+</div>
+`;

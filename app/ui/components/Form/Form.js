@@ -38,7 +38,7 @@ const FormBuilder = ({ classes, context, onUserChange, onPasswordChange, onPrima
 	let fieldsObj = form_schema.fields;
 	let buttonsObj = form_schema.buttons;
 	return (
-		[ <h1> { form_schema.title } </h1>,
+		[ <h1 key={'title'}> { form_schema.title } </h1>,
 		renderFields(fieldsObj, onPasswordChange, onUserChange),
 		renderButtons(buttonsObj, onPrimaryButtonClick, onSecundaryButtonClick)
 		])

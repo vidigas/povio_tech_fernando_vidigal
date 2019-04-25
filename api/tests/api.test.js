@@ -133,7 +133,6 @@ var userId
       request(app)
         .get('/me')
         .expect(res => {
-        	console.log(res.body)
         	res.body.success.toBe(false);
 
         })

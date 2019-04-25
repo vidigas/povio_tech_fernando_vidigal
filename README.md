@@ -20,11 +20,6 @@ npm install
 
 # Run 
 
-## Mongo 
-```bash
- mongod 
-```
-
 ## Build
 ```bash
 npm run build 
@@ -57,30 +52,5 @@ npm run test
 ```
 
 
-<!-- ##  Api Endpoints
-
-
-
-```bash
-
-METHOD POST http://localhost:8080/signup/
-
-REQUEST
-
-body = {
-	message: "message body."
-}
-
-
-RESPONSE
-
-body = { 
-	user: '123456'
-	action: 'send',
-	body: body
-
-}
-```
- -->
 
 

@@ -9,7 +9,7 @@ const buttonStyle = {
       outline: 'none',
       padding: '10px 20px',
       cursor: 'pointer',
-      backgroundColor: '#81D2AE',
+      backgroundColor:({ isLiked }) => isLiked ? '#ff8282': '#81D2AE',
       fontWeight: 'bold',
       borderRadius: '10px',
       minWidth: '30px',
@@ -23,7 +23,7 @@ const buttonStyle = {
   }
 };
 
-const Button = ({ label, onClick, className, classes, type, key }) => {
+const Button = ({ label, onClick, className, classes, type, key, isLiked }) => {
   return (
     <button onClick={onClick} className={`${classes.button} ${className}`} type={type} key={key}>
       {label}

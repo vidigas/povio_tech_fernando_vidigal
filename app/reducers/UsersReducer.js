@@ -2,6 +2,7 @@ const INITIAL_STATE = {
 	allUsers: [],
 	loginInfo: null,
 	signupInfo: null,
+	updateInfo: null,
 	newLikes: null,
 	newUnlikes: null,
 	userInfo: {
@@ -22,6 +23,8 @@ export default ( state = INITIAL_STATE, action ) => {
 			return { ...state, loginInfo: action.payload};
 		case 'SIGNUP_USER': 
 			return { ...state, signupInfo: action.payload};
+		case 'UPDATE_USER':
+			return { ...state, updateInfo: action.payload};
 		case 'LIKE_USER': 
 			return { ...state, newLikes: action.payload, newUnlikes: null };
 		case 'UNLIKE_USER':

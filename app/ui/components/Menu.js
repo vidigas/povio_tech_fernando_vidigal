@@ -33,11 +33,4 @@ const style = {
 
 }
 
-// Header.propTypes = {
-// 	username: propTypes.string.isRequired,
-//   likes: propTypes.number.isRequired,
-// 	id: propTypes.string.isRequired,
-// 	onClick: propTypes.func.isRequired,
-// };
-
 export default injectSheet(style)(Menu);

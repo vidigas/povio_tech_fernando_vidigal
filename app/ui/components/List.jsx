@@ -77,9 +77,9 @@ class List extends Component {
 	render (){
 		const { classes } = this.props;
 		return([
-			<h1 className={classes.title}>List of Users</h1>,
+			<h1 className={classes.title} key={`k1`}>List of Users - Sorted by likes</h1>,
 		
-			<div className={classes.list} >
+			<div className={classes.list} key={`list`}>
 		
 			{this.renderCards()}
 		

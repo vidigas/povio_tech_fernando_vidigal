@@ -8,6 +8,7 @@ import { openModal, fetchUser, logout } from '../../actions';
 
 import Signup from '../Auth/Signup';
 import Login from '../Auth/Login';
+import Update from '../Auth/UpdatePass';
 
 import List from '../../ui/components/List';
 import Menu from '../../ui/components/Menu';
@@ -23,7 +24,6 @@ class Home extends Component {
 	componentWillMount(){
 
 		let token = localStorage.getItem('token', token);
-		console.log('componentdidMount', token);
 		if(token)  this.props.fetchUser(token);
 
 	}
@@ -54,6 +54,8 @@ class Home extends Component {
 				<Login />
 				
 				<Signup />
+
+				<Update />
 
 
 			</div>

@@ -3,11 +3,11 @@ import injectSheet from 'react-jss';
 
 import { connect } from 'react-redux';
 
-import { openModal, closeModal, onUserChange, onPasswordChange, loginClick, loginResponse, fetchUser } from '../../actions';
+import { openModal, closeModal, onPasswordChange, updateClick, loginResponse, fetchUser } from '../../actions';
 
 import Modal from "../../ui/components/Modal";
 
-class UpdatePassword extends Component {
+class Update extends Component {
 	constructor(props){
 		super(props);
 		
@@ -25,12 +25,11 @@ class UpdatePassword extends Component {
 	}
 	
 	componentWillReceiveProps(nextProps){
-		if(nextProps.loginInfo !== this.props.loginInfo){
+		if(nextProps.updateInfo !== this.props.updateInfo){
 	
-			this.handleUpdateResponse(nextProps.loginInfo);
+			return this.handleUpdateResponse(nextProps.updateInfo);
 
 		}
-		
 
 	}
 
@@ -41,9 +40,8 @@ class UpdatePassword extends Component {
 				show={this.props.show}
 				context={'update'}
 				closeModal={() => this.props.closeModal('update')}
-				onUserChange={this.props.onUserChange}
 				onPasswordChange={this.props.onPasswordChange}
-				onPrimaryButtonClick={() => this.props.loginClick(this.props.username, this.props.password)}
+				onPrimaryButtonClick={() => this.props.updateClick(this.props.userInfo.token, this.props.password)}
 				onSecundaryButtonClick={() => this.handleGoToSignup(this.props.closeModal, this.props.openModal)}/>
 		);
 	}
@@ -53,16 +51,17 @@ class UpdatePassword extends Component {
 const mapStateToProps = (state) => {
 
 	return {
-		show: state.login.show,
+		show: state.update.show,
 		username: state.form.username,
 		password: state.form.password,
-		loginInfo: state.users.loginInfo
+		updateInfo: state.users.updateInfo,
+		userInfo: state.users.userInfo
 	}
 	
 };
 
 
-export default injectSheet()(connect(mapStateToProps, {closeModal, openModal, onUserChange, onPasswordChange, loginClick, fetchUser})(Login))
+export default injectSheet()(connect(mapStateToProps, {closeModal, openModal, onPasswordChange,updateClick, fetchUser})(Update))
 
 
 

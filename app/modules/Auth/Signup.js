@@ -18,19 +18,19 @@ class Signup extends Component {
 		this.props.openModal('login');
 	}
 
-	handleSignupResponse(data){
+	async handleSignupResponse(data){
 		localStorage.setItem('token', data.token);
-		this.props.fetchUser(data.token);
-		this.props.closeModal('signup');
+		await this.props.fetchUser(data.token);
+		await this.props.closeModal('signup');
 		return alert(data.message);
 
 	}
 	
-	componentWillReceiveProps(nextProps){
+	async componentWillReceiveProps(nextProps){
 
 		if(nextProps.signupInfo !== this.props.signupInfo){
 
-			this.handleSignupResponse(nextProps.signupInfo);
+			await this.handleSignupResponse(nextProps.signupInfo);
 		}
 	}
 		

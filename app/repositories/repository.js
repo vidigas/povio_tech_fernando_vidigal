@@ -34,8 +34,7 @@ export const unlikeRequest = ( userId, token) => {
 }
 
 
-export const updateRequest = (password, token) => {
-	
+export const updateRequest = (token, password) => {
 	let data = JSON.stringify( { password });
 
 	return axios.put(`/me/update-password`, { password },{ headers : { Authorization : token }});

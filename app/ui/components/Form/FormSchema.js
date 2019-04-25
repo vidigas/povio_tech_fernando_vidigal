@@ -45,10 +45,6 @@ const signup_form_schema = {
 const update_form_schema = {
 	title: 'UPDATE PASSWORD',
 	fields : {
-		username : {
-			placeholder: 'username',
-			type: 'text'
-		},
 		newPassword: {
 			placeholder: 'new password',
 			type: 'password'

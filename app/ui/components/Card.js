@@ -5,19 +5,25 @@ import propTypes from 'prop-types';
 import Button from '../atoms/Button';
 
 
-const renderButton = (isLiked, clickAction, isLoggedIn ) => {
+const renderButton = (isLiked, clickAction, isLoggedIn, id ) => {
   let label = isLiked ? 'unlike' : 'like' ;
 
  if(!isLoggedIn) return;
- else return <Button label={label} onClick={clickAction} />
+ else return (
+      <Button
+        label={label}
+        onClick={clickAction}
+        key={`button-${id}`}
+        isLiked={isLiked}
+   />);
 }
 
-const renderLikes = (classes, likes, clickAction, isLiked, isLoggedIn ) => {
+const renderLikes = (classes, likes, clickAction, isLiked, isLoggedIn , id) => {
 
      return (
-      <div className={classes.like}>
-        <span className={classes.span}> {likes} likes </span> <br/>
-         {renderButton(isLiked, clickAction, isLoggedIn)}
+      <div className={classes.like} key={`like-${id}`}>
+        <span className={classes.span} key={`span-${id}`}> {likes} likes </span> <br/>
+         {renderButton(isLiked, clickAction, isLoggedIn, id)}
       </div>
       );
          
@@ -26,11 +32,11 @@ const renderLikes = (classes, likes, clickAction, isLiked, isLoggedIn ) => {
 const Card = ({key, classes, username, id, likes, clickAction, isLiked, isLoggedIn }) => {
     
   return (
-    <div className={classes.container}>
-      <div className={classes.user}>
+    <div className={classes.container} key={`container-${id}`}>
+      <div className={classes.user} key={`user-${id}`}>
         <span className={classes.username}> {username} </span> <br/>
       </div>
-      {renderLikes(classes, likes, clickAction, isLiked, isLoggedIn)}
+      {renderLikes(classes, likes, clickAction, isLiked, isLoggedIn , id)}
     </div>
   )
 }

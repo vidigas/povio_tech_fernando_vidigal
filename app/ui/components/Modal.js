@@ -47,13 +47,5 @@ const Modal = ({ classes, context, closeModal, onUserChange, onPasswordChange, o
   );
 }
 
-// Button.propTypes = {
-// 	onClick: propTypes.func.isRequired,
-// 	label: propTypes.string,
-// 	className: propTypes.string,
-// 	type: propTypes.string
-// };
-
-
 
 export default injectSheet(style)(Modal);

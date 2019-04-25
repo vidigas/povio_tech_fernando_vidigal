@@ -1,9 +1,14 @@
 
 	import { openModal, closeModal, goToSignup}  from './Modal';
 
-	import { loginClick, signupClick, likeAction, unlikeAction, logout } from './API';
+	import { loginClick } from './api/login';
+	import { signupClick } from './api/signup';
+	import { updateClick } from './api/update'; 
+	
 
-	import { fetchUsers, fetchUser } from './User'
+	import { likeAction, unlikeAction, logout } from './API';
+
+	import { fetchUsers, fetchUser } from './User';
 
 	import { onUserChange, onPasswordChange } from './Form';
 
@@ -15,6 +20,7 @@
 	 	fetchUser,
 	 	loginClick,
 	 	signupClick,
+	 	updateClick,
 	 	likeAction,
 	 	unlikeAction,
 	 	onUserChange,

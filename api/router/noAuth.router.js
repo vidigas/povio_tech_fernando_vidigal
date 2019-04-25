@@ -10,7 +10,6 @@ const noAuthRouter = () => {
 	const Users = mongoose.model('users');
 
 	var router = express.Router();
-
 	router.post('/login', handle(Users.login));
 
 	router.post('/signup', handle(Users.signup));

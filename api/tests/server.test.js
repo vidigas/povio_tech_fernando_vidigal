@@ -1,30 +1,90 @@
-import request from 'supertest'
-import mongoose from "mongoose";
+import request from 'supertest';
+import express from 'express';
+import bodyParser from "body-parser";
 
 
-import app from '../server';
-import mongodb from "../db";
+import should from 'should';
 
-import usersModel from "../db/models/users.model";
+import { populateTestDB } from './tests.utils'
+import Server from '../server';
+
+describe('Test API', () => {
+
+var token = 'test'
 
 
-describe('Test the root path', () => {
-    beforeAll(() => {
-    		mongoose.model('users', usersModel);
+  test('/most-liked - return status 200 and userlist sorted by likes', async function (done) {
+    await populateTestDB()
+          
+    const app = Server();
 
-				mongoose.set('useFindAndModify', false);
-        mongoose.connect('mongodb://localhost/test');
-    });
-    afterAll((done) => {
-        mongoose.disconnect(done);
-    });
+    var server = app.listen(8787, err => {
+      if(err) {  console.log(err)} 
+      else {
+      request(app)
+        .get('/most-liked')
+        .end(function (err, res) {
+           res.status.should.equal(200);
+           for( var i = 0; i < res.body.length - 2; i++){
 
-    test('It should response the GET method', (done) => {
+            expect(res.body[i].likes).toBeGreaterThanOrEqual(res.body[i + 1].likes)
+           }
+          server.close();
+          done();
+      })
+      }
+    })
+  });
 
-        request(app).get('/most-liked').then((response) => {
-        	console.log(response)
-            expect(response.statusCode).toBe(200);
-            done();
-        });
-    });
+  test('/login - return status 200 and message wrong password', async function (done) {
+    await populateTestDB()
+          
+    const app = Server();
+
+    var server = app.listen(8787, err => {
+      if(err) {  console.log(err)} 
+      else {
+      request(app)
+        .post('/login')
+        .send({username: 'Michael', password:'passwordTest'})
+        .expect(res => console.log(res.body))
+        .end(function (err, res) {
+           res.status.should.equal(200);
+           res.body.message.should.equal("wrong password");
+                     server.close();
+
+          done();
+      })
+      }
+    })
+  });
+
+  test('/signup - return status 200 and token', async function (done) {
+    await populateTestDB()
+          
+    const app = Server();
+
+    var server = app.listen(8787, err => {
+      if(err) {  console.log(err)} 
+      else {
+      request(app)
+        .post('/signup')
+        .send({username: 'NewUser', password:'newPassword'})
+        .expect(res => console.log(res.body))
+        .end(function (err, res) {
+           res.status.should.equal(200);
+           res.body.message.should.equal("sucessfull signup");
+           console.log(token)
+
+          server.close();
+
+          done();
+      })
+      }
+    })
+  });
+
+
 });
+
+

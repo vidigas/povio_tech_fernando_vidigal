@@ -71,6 +71,7 @@ export const getMe = async (params, token) => {
 // return all users 
 
 export const getAll = async () => {
+	
 	const Users = mongoose.model('users');
 
 	try {

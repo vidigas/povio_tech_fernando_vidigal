@@ -7,7 +7,8 @@ import { PORT, MONGO_URL } from './env.config';
 
 mongodb()
 	.then(async () => {
-		const app = await server();
+		
+		const app = server();
 
 		app.use(express.static(path.join(__dirname, "public")));
 		app.set("views", path.join(__dirname, "views"));

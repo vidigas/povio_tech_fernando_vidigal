@@ -7,9 +7,8 @@ import checkToken  from './auth/middleware';
 
 
 export default () => {
-
-	const app = express();
-
+	let app = express()
+		
 	app.use(bodyParser.json());
 
 	app.use('/', checkToken);
@@ -18,9 +17,7 @@ export default () => {
 
  	app.use('/', authRouter());
 
- 	
+ 	return app
 
-
-	return app;
 
 }
